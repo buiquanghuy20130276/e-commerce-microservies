@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      username: quanghuyfs
+      password: quanghuyfs
+      host: localhost
+      database: customer
+      authentication-database: admin
+
