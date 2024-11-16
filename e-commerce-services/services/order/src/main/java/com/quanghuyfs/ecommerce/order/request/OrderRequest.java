@@ -11,7 +11,6 @@ import org.springframework.validation.annotation.Validated;
 import java.math.BigDecimal;
 import java.util.List;
 @Validated
-@Data
 public record OrderRequest(
         Long id,
         String reference,
