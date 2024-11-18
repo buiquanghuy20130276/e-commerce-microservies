@@ -50,7 +50,7 @@ public class ProductService {
             repository.save(product);
             purchaseProducts.add(mapper.toProductPurchaseResponse(product,productRequest.quantity()));
         }
-        return null;
+        return purchaseProducts;
     }
 
     public ProductResponse findById(Long id) {

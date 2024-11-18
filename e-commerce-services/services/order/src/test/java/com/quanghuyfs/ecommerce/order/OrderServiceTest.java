@@ -122,7 +122,7 @@ public class OrderServiceTest {
 
     @Test
     void testFindOrderById_Success() {
-        Long orderId = 1L;  
+        Long orderId = 1L;
         Order mockOrder = new Order();
         mockOrder.setId(orderId);
         mockOrder.setReference("reference123");
