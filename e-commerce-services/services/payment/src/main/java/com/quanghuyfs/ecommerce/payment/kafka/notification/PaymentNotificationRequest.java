@@ -1,4 +1,4 @@
-package com.quanghuyfs.ecommerce.payment.notification;
+package com.quanghuyfs.ecommerce.payment.kafka.notification;
 
 import com.quanghuyfs.ecommerce.payment.model.PaymentMethod;
 

@@ -1,4 +1,4 @@
-package com.quanghuyfs.ecommerce.payment.notification;
+package com.quanghuyfs.ecommerce.payment.kafka.notification;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

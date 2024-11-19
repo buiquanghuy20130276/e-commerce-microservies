@@ -1,8 +1,8 @@
 package com.quanghuyfs.ecommerce.payment.service;
 
 import com.quanghuyfs.ecommerce.payment.mapper.PaymentMapper;
-import com.quanghuyfs.ecommerce.payment.notification.NotificationProducer;
-import com.quanghuyfs.ecommerce.payment.notification.PaymentNotificationRequest;
+import com.quanghuyfs.ecommerce.payment.kafka.notification.NotificationProducer;
+import com.quanghuyfs.ecommerce.payment.kafka.notification.PaymentNotificationRequest;
 import com.quanghuyfs.ecommerce.payment.request.PaymentRequest;
 import com.quanghuyfs.ecommerce.payment.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;

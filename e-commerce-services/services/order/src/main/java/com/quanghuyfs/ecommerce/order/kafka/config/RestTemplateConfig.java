@@ -1,4 +1,4 @@
-package com.quanghuyfs.ecommerce.order.config;
+package com.quanghuyfs.ecommerce.order.kafka.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

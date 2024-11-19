@@ -1,4 +1,4 @@
-package com.quanghuyfs.ecommerce.payment.config;
+package com.quanghuyfs.ecommerce.payment.kafka.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
