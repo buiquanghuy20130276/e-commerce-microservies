@@ -1,4 +1,4 @@
-package com.quanghuyfs.ecommerce.order.customer;
+package com.quanghuyfs.ecommerce.order.product;
 
 import com.quanghuyfs.ecommerce.order.exception.BusinessException;
 import com.quanghuyfs.ecommerce.order.request.PurchaseRequest;

@@ -19,6 +19,7 @@ import java.util.List;
 @Builder
 @Data
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "\"order\"")
 public class Order {
     @Id
     @GeneratedValue
@@ -27,7 +28,7 @@ public class Order {
     private BigDecimal totalAmount;
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
-    private Long customerId;
+    private String customerId;
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
     @CreatedDate

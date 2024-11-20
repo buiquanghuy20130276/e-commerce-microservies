@@ -1,7 +1,7 @@
 package com.quanghuyfs.ecommerce.order.service;
 
 import com.quanghuyfs.ecommerce.order.customer.CustomerClient;
-import com.quanghuyfs.ecommerce.order.customer.ProductClient;
+import com.quanghuyfs.ecommerce.order.product.ProductClient;
 import com.quanghuyfs.ecommerce.order.exception.BusinessException;
 import com.quanghuyfs.ecommerce.order.kafka.OrderConfirmation;
 import com.quanghuyfs.ecommerce.order.kafka.OrderProducer;

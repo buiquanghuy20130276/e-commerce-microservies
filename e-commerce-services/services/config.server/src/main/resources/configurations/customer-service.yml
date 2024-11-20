@@ -1,9 +1,11 @@
+server:
+  port: 8090
 spring:
   data:
     mongodb:
       username: quanghuyfs
       password: quanghuyfs
       host: localhost
+      port: 27017
       database: customer
       authentication-database: admin
-

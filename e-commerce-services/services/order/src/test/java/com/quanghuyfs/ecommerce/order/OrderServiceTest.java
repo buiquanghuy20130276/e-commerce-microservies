@@ -1,7 +1,7 @@
 package com.quanghuyfs.ecommerce.order;
 
 import com.quanghuyfs.ecommerce.order.customer.CustomerClient;
-import com.quanghuyfs.ecommerce.order.customer.ProductClient;
+import com.quanghuyfs.ecommerce.order.product.ProductClient;
 import com.quanghuyfs.ecommerce.order.exception.BusinessException;
 import com.quanghuyfs.ecommerce.order.kafka.OrderProducer;
 import com.quanghuyfs.ecommerce.order.mapper.OrderMapper;
@@ -61,14 +61,14 @@ public class OrderServiceTest {
 
     @BeforeEach
     void setUp() {
-        customerResponse = new CustomerResponse(1L, "John Doe", "HUy", "john@example.com");
+        customerResponse = new CustomerResponse("sakdjgfkjas", "John Doe", "HUy", "john@example.com");
 
         orderRequest = new OrderRequest(
                 1L,
                 "ORDER123",
                 new BigDecimal("100.00"),
                 PaymentMethod.CREDIT_CARD,
-                1L,
+                "sakdjgfkjas",
                 List.of(new PurchaseRequest(1L, 2))
         );
 
@@ -83,7 +83,7 @@ public class OrderServiceTest {
 
     @Test
     void createOrder_ShouldCreateOrderSuccessfully() {
-        when(customerClient.findCustomerById(anyLong())).thenReturn(Optional.of(customerResponse));
+        when(customerClient.findCustomerById(anyString())).thenReturn(Optional.of(customerResponse));
         when(productClient.purchaseProducts(anyList())).thenReturn(List.of());
         when(mapper.toOrder(orderRequest)).thenReturn(new Order(1L, "huy", new BigDecimal("5000"), PaymentMethod.CREDIT_CARD, 1L, List.of(), LocalDateTime.now(), LocalDateTime.now()));
         when(repository.save(any())).thenReturn(new Order(1L, "huy", new BigDecimal("5000"), PaymentMethod.CREDIT_CARD, 1L, List.of(), LocalDateTime.now(), LocalDateTime.now()));
@@ -92,7 +92,7 @@ public class OrderServiceTest {
         Long orderId = service.createOrder(orderRequest);
         System.out.println("orderId: " + orderId);
         Assertions.assertNotNull(orderId);
-        Mockito.verify(customerClient, times(1)).findCustomerById(Mockito.anyLong());
+        Mockito.verify(customerClient, times(1)).findCustomerById(Mockito.anyString());
         Mockito.verify(repository, times(1)).save(Mockito.any());
         Mockito.verify(paymentClient, times(1)).requestOrderPayment(Mockito.any());
         Mockito.verify(orderItemService, times(1)).saveOrderItem(Mockito.any());
@@ -101,7 +101,7 @@ public class OrderServiceTest {
 
     @Test
     void testCreateOrderCustomerNotFound() {
-        when(customerClient.findCustomerById(anyLong())).thenReturn(Optional.empty());
+        when(customerClient.findCustomerById(anyString())).thenReturn(Optional.empty());
 
         BusinessException exception = Assertions.assertThrows(BusinessException.class, () -> {
             service.createOrder(orderRequest);

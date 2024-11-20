@@ -1,7 +1,7 @@
 package com.quanghuyfs.ecommerce.order.response;
 
 public record CustomerResponse(
-        Long id,
+        String id,
         String firstname,
         String lastname,
         String email

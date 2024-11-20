@@ -28,6 +28,8 @@ services:
     networks:
       - microservices-net
     restart: unless-stopped
+    depends_on:
+      - postgres
 
   mongodb:
     container_name: ms_mongo_db
@@ -52,6 +54,7 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: quanghuyfs
       ME_CONFIG_MONGODB_ADMINPASSWORD: quanghuyfs
       ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_URL: mongodb://quanghuyfs:quanghuyfs@mongodb:27017/
     networks:
       - microservices-net
     depends_on:
@@ -59,7 +62,7 @@ services:
 
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
-    container_name: zookeeper
+    container_name: ms_zookeeper
     environment:
       ZOOKEEPER_SERVER_ID: 1
       ZOOKEEPER_CLIENT_PORT: 2181
@@ -91,6 +94,13 @@ services:
     ports:
       - "1080:1080"
       - "1025:1025"
+    networks:
+      - microservices-net
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
     networks:
       - microservices-net
 networks:

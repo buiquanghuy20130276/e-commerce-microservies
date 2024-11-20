@@ -11,23 +11,24 @@ import java.util.HashMap;
 
 @RestControllerAdvice
 public class GlobalException {
+
     @ExceptionHandler(CustomerNotFoundException.class)
-    public ResponseEntity<String>handleException(CustomerNotFoundException exp){
+    public ResponseEntity<String> handleCustomerNotFoundException(CustomerNotFoundException exp){
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(exp.getMsg());
     }
-    @ExceptionHandler(CustomerNotFoundException.class)
-    public ResponseEntity<ErrorResponse>handleException(MethodArgumentNotValidException exp){
-        var erorrs = new HashMap<String,String>();
-        exp.getBindingResult().getAllErrors()
-                .forEach(error->{
-                    var fieldName = ((FieldError)error).getField();
-                    var errorMessage =error.getDefaultMessage();
-                    erorrs.put(fieldName,errorMessage);
-                });
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(new ErrorResponse(erorrs));
-    }
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException exp){
+        var errors = new HashMap<String, String>();
+        exp.getBindingResult().getAllErrors()
+                .forEach(error -> {
+                    var fieldName = ((FieldError) error).getField();
+                    var errorMessage = error.getDefaultMessage();
+                    errors.put(fieldName, errorMessage);
+                });
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(errors));
+    }
 
 }

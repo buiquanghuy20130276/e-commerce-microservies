@@ -21,7 +21,7 @@ public record OrderRequest(
         @NotNull(message = "Customer should be present")
         @NotEmpty(message = "Customer should be present")
         @NotBlank(message = "Customer should be present")
-        Long customerId,
+        String customerId,
         @NotEmpty(message = "you should at least purchase one product")
         List<PurchaseRequest>products
 

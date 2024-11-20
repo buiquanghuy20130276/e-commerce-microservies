@@ -21,7 +21,7 @@ CustomerService {
     private final CustomerRepository repository;
     private final CustomerMapper mapper;
 
-    public Long createCustomer(CustomerRequest request) {
+    public String createCustomer(CustomerRequest request) {
         var customer = repository.save(mapper.toCustomer(request));
         return customer.getId();
     }
@@ -54,18 +54,18 @@ CustomerService {
 
     }
 
-    public Boolean existsById(Long customerId) {
+    public Boolean existsById(String customerId) {
         return repository.findById(customerId).isPresent();
     }
 
-    public CustomerResponse findById(Long customerId) {
+    public CustomerResponse findById(String customerId) {
         return repository.findById(customerId)
                 .map(mapper::fromCustomer)
                 .orElseThrow(()->new CustomerNotFoundException(String.format("No customer found with ID :: %s ",customerId)));
 
     }
 
-    public void deleteCustomer(Long customerId) {
+    public void deleteCustomer(String customerId) {
         repository.deleteById(customerId);
     }
 }
